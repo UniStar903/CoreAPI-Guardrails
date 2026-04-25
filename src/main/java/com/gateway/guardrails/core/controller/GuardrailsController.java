@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gateway.guardrails.core.dto.CreateCommentRequest;
+import com.gateway.guardrails.core.dto.CreatePostRequest;
 import com.gateway.guardrails.core.entity.Comment;
-import com.gateway.guardrails.core.repository.GuardrailsPostRepo;
+import com.gateway.guardrails.core.entity.Post;
 import com.gateway.guardrails.core.service.GuardrailViralityService;
 import com.gateway.guardrails.core.service.GuardrailsCommentService;
 import com.gateway.guardrails.core.service.GuardrailsPostService;
@@ -32,9 +33,20 @@ public class GuardrailsController {
     private GuardrailViralityService viralityService;
 	
 	@PostMapping("/posts")
-	public String createNewPost() {
-		return "new post created";
+	public ResponseEntity<Post> createNewPost(@RequestBody CreatePostRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPost(request));
 	}
+	
+	@GetMapping("/posts/{postId}")
+    public ResponseEntity<Post> getPost(@PathVariable Long postId) {
+        return ResponseEntity.ok(postService.getPostById(postId));
+    }
+	
+	@GetMapping("/posts/{postId}/virality")
+    public ResponseEntity<Map<String, Long>> getViralityScore(@PathVariable Long postId) {
+        return ResponseEntity.ok(Map.of("viralityScore", viralityService.getViralityScore(postId)));
+    }
+
 
 	@PostMapping("/posts/{postId}/comments")
 	public String addCommentsToPost(@PathVariable(required = true) long postId, @RequestBody CreateCommentRequest request) {
