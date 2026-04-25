@@ -2,6 +2,7 @@ package com.gateway.guardrails.core.entity;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,10 +21,16 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column
 	private long post_id;
+	@Column
 	private long author_id;
+	@Column
 	private String author_type;
+	@Column
 	private String content;
+	@Column
 	private int depth_level;
+	@Column
 	private LocalDateTime created_at;
 }

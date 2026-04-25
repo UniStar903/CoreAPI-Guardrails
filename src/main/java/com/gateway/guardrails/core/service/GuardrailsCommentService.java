@@ -29,7 +29,7 @@ public class GuardrailsCommentService {
     private GuardrailNotificationService notificationService;
 	
 	private static final String AUTHOR_TYPE_BOT = "BOT";
-    private static final String AUTHOR_TYPE_USER = "USER";
+//    private static final String AUTHOR_TYPE_USER = "USER";
 
     @Transactional
     public Comment createComment(Long postId, CreateCommentRequest request) {
