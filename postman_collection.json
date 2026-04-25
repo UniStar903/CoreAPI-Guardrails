@@ -1,0 +1,92 @@
+{
+  "info": {
+    "name": "Guardrails API Collection",
+    "_postman_id": "c1a2b3c4-d5e6-7890-abcd-1234567890ab",
+    "description": "Postman collection for testing GuardrailsController APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api"
+    },
+    {
+      "key": "postId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/posts",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"authorType\": \"HUMAN\",\n  \"authorId\": 101,\n  \"content\": \"This is my first post\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Get Post By ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/posts/{{postId}}"
+      }
+    },
+    {
+      "name": "Get Virality Score",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/posts/{{postId}}/virality"
+      }
+    },
+    {
+      "name": "Add Comment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/posts/{{postId}}/comments",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"authorType\": \"HUMAN\",\n  \"authorId\": 202,\n  \"content\": \"Nice post!\",\n  \"depthLevel\": 0\n}"
+        }
+      }
+    },
+    {
+      "name": "Get Comments By Post",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/posts/{{postId}}/comments"
+      }
+    },
+    {
+      "name": "Like Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/posts/{{postId}}/like",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"authorType\": \"HUMAN\",\n  \"authorId\": 303\n}"
+        }
+      }
+    }
+  ]
+}
