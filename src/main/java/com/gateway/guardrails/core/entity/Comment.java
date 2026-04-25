@@ -22,6 +22,7 @@ public class Comment {
 	private long id;
 	private long post_id;
 	private long author_id;
+	private String author_type;
 	private String content;
 	private int depth_level;
 	private LocalDateTime created_at;

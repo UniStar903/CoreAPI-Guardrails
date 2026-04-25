@@ -50,7 +50,7 @@ public class GuardrailsCommentService {
 
         Comment comment = new Comment();
         comment.setPost_id(postId);
-        comment.setAuthorType(authorType);
+        comment.setAuthor_type(authorType);
         comment.setAuthor_id(authorId);
         comment.setContent(request.getContent());
         comment.setDepth_level(depthLevel);
