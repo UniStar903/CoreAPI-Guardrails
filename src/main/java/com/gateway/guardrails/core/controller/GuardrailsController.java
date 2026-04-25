@@ -1,5 +1,6 @@
 package com.gateway.guardrails.core.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class GuardrailsController {
     }
 	
 	@PostMapping("/posts/{postId}/like")
-	public String likedAPost(@PathVariable(required = true) int postId) {
-		return postId+"liked a post";
+	public ResponseEntity<List<Comment>> likedAPost(@PathVariable(required = true) long postId) {
+        return ResponseEntity.ok(commentService.getCommentsByPostId(postId));
 	}
 }
